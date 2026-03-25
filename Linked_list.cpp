@@ -246,47 +246,108 @@ public:
         cout << string(40, '=') << endl;
     }
 };
+// Step-by-step demonstration function
+void demonstrateList() {
+    cout << "\n" << string(50, '=') << endl;
+    cout << "STEP-BY-STEP DEMONSTRATION" << endl;
+    cout << string(50, '=') << endl;
+    
+    SinglyLinkedList sll;
+    
+    cout << "\n--- Step 1: Insert at beginning ---" << endl;
+    sll.insertAtBeginning(10);
+    sll.traverse();
+    
+    cout << "\n--- Step 2: Insert at end ---" << endl;
+    sll.insertAtEnd(20);
+    sll.traverse();
+    
+    cout << "\n--- Step 3: Insert at beginning again ---" << endl;
+    sll.insertAtBeginning(5);
+    sll.traverse();
+    
+    cout << "\n--- Step 4: Insert at position ---" << endl;
+    sll.insertAtPosition(15, 2);
+    sll.traverse();
+    
+    cout << "\n--- Step 5: Search for a value ---" << endl;
+    sll.search(15);
+    
+    cout << "\n--- Step 6: Delete by value ---" << endl;
+    sll.deleteByValue(10);
+    sll.traverse();
+    
+    cout << "\n--- Step 7: Delete by position ---" << endl;
+    sll.deleteAtPosition(1);
+    sll.traverse();
+    
+    cout << "\n--- Step 8: Final traversal ---" << endl;
+    sll.traverse();
+    
+    sll.displayMetrics();
+}
+
+// Performance testing function
+void performanceTest() {
+    cout << "\n" << string(50, '=') << endl;
+    cout << "PERFORMANCE TESTING" << endl;
+    cout << string(50, '=') << endl;
+    
+    int testSizes[] = {1, 2, 3, 4, 5, 10, 250, 999, 9999};
+    
+    for (int i = 0; i < 9; i++) {
+        int size = testSizes[i];
+        cout << "\n--- Testing with " << size << " elements ---" << endl;
+        SinglyLinkedList sll;
+        
+        // Insert elements
+        for (int j = 0; j < size; j++) {
+            sll.insertAtEnd(j);
+        }
+        
+        cout << "List size: " << sll.getSize() << endl;
+        
+        // Test best case (first element)
+        sll.resetMetrics();
+        sll.search(0);
+        cout << "Best case - Operations: " << sll.getOperations() 
+             << ", Comparisons: " << sll.getComparisons() << endl;
+        
+        // Test worst case (last element)
+        if (size > 0) {
+            sll.resetMetrics();
+            sll.search(size - 1);
+            cout << "Worst case - Operations: " << sll.getOperations() 
+                 << ", Comparisons: " << sll.getComparisons() << endl;
+        }
+        
+        // Test average case (middle element)
+        if (size > 0) {
+            sll.resetMetrics();
+            sll.search(size / 2);
+            cout << "Average case - Operations: " << sll.getOperations() 
+                 << ", Comparisons: " << sll.getComparisons() << endl;
+        }
+    }
+}
 
 int main() {
     cout << string(50, '=') << endl;
     cout << "SINGLY LINKED LIST IMPLEMENTATION" << endl;
-    cout << "COSC 333 - DESIGN AND ANALYSIS" << endl;
+    cout << "COSC 333 - DESIGN AND ANALYSIS OF ALGORITHMS" << endl;
     cout << "Student: Javan Otieno" << endl;
     cout << "Registration: EB3.67256.23" << endl;
     cout << string(50, '=') << endl;
     
-    SinglyLinkedList list;
+    // Run step-by-step demonstration
+    demonstrateList();
     
-    cout << "\n--- Testing Insert Operations ---" << endl;
+    // Run performance testing
+    performanceTest();
     
-    list.insertAtEnd(20);
-    list.traverse();
-    
-    list.insertAtBeginning(10);
-    list.traverse();
-    
-    list.insertAtBeginning(5);
-    list.traverse();
-    
-    list.insertAtPosition(15, 2);
-    list.traverse();
-    
-    cout << "\n--- Testing Delete Operations ---" << endl;
-    
-    list.deleteByValue(20);
-    list.traverse();
-    
-    list.deleteAtPosition(1);
-    list.traverse();
-    
-    cout << "\n--- Testing Search ---" << endl;
-    
-    list.search(15);
-    list.search(100);
-    
-    list.displayMetrics();
-    
-    cout << "\nFinal size: " << list.getSize() << endl;
+    cout << "\n" << string(50, '=') << endl;
+    cout << "PROGRAM COMPLETED" << endl;
+    cout << string(50, '=') << endl;
     
     return 0;
 }
